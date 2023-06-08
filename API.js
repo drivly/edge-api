@@ -21,4 +21,5 @@ export const API = options => {
       return error(err)
     }
   }
+  return api
 }

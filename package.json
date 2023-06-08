@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "url": "https://github.com/nathanclevenger/edge-api/issues"
   },
   "homepage": "https://github.com/nathanclevenger/edge-api#readme",
+  "sideEffects": false,
   "dependencies": {
     "itty-durable": "^2.0.0",
     "itty-fetcher": "^0.8.1",
