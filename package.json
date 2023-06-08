@@ -1,0 +1,27 @@
+{
+  "name": "edge-api",
+  "version": "0.0.1",
+  "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanclevenger/edge-api.git"
+  },
+  "keywords": [],
+  "author": "Nathan Clevenger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nathanclevenger/edge-api/issues"
+  },
+  "homepage": "https://github.com/nathanclevenger/edge-api#readme",
+  "dependencies": {
+    "itty-durable": "^2.0.0",
+    "itty-fetcher": "^0.8.1",
+    "itty-router": "^4.0.9",
+    "next-auth": "^4.22.1",
+    "realm-web": "^2.0.0"
+  }
+}

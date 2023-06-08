@@ -1,0 +1,1 @@
+export const json = obj => obj?.constructor.name === 'Response' ? obj : new Response(JSON.stringify(obj, null, 2), { headers: { 'content-type': 'application/json; charset=utf-8' } })
