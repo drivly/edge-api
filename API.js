@@ -9,7 +9,7 @@ export const API = options => {
   api.fetch = async (req, env, ctx) => {
     try {
       const startTime = Date.now()
-      const data = await router.handle(req, env, ctx)
+      const data = await api.handle(req, env, ctx)
       const responseTime = Date.now() - startTime
       const response = json(data)
       response.headers.set('X-Response-Time', `${responseTime}ms`)
