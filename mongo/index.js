@@ -1,2 +1,2 @@
 export * from 'realm-web'
-export { withDB } from './withDB.js'
+export * from './withDB.js'
