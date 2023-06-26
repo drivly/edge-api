@@ -4,6 +4,7 @@ export const withRPC = (req, env, ctx)  => {
   const parse = true // TODO: make this configurable
 
   for (const [key, binding] of Object.entries(env)) {
+    console.log(key)
     if (isService(binding)) {
       const proxied = proxyService(binding, {
         name: key,
@@ -27,28 +28,45 @@ const isService = (item) => {
 }
 
 const proxyService = (service, middlewareOptions = {}) => {
-  const buildRequest = (functionName, args) =>
-  new Request(`https://${service}/${functionName}/${JSON.stringify(args)}`, {
-    // TODO: Figure out how to passadditional context like cf, user, headers, etc
-    // headers: {
-    //   ...headers,
-    //   'x-content': JSON.stringify(content),
+  const buildRequest = (functionName, args) => {
+    console.log(functionName, args)
+    return new Request(`https://${service}/${functionName}/${JSON.stringify(args)}`, {
+      // TODO: Figure out how to passadditional context like cf, user, headers, etc
+      // headers: {
+      //   ...headers,
+      //   'x-content': JSON.stringify(content),
+      // },
+    })
+  }
+ 
+
+  const stubFetch = (obj, functionName, args) => {
+    const theFetch = obj.fetch(buildRequest(functionName, args)).then(res => res.json())
+
+    return 
+
+    // return theFetch
+    
+    // return options.parse
+    // ? theFetch.then(res => res.json())
+    // : theFetch
+  }
+
+  return new Proxy(service, {
+    // get: (obj, prop) => (...args) => stubFetch(obj, prop, args)
+    get: (obj, prop) => {
+      console.log(obj, prop)
+      return (...args) => stubFetch(obj, prop, args)
+    },
+    // apply: (obj, functionName, args) => stubFetch(obj, functionName, args),
+    // apply: (obj, functionName, args) => {
+    //   console.log(obj, functionName, args)
+    //   return stubFetch(obj, functionName, args)
     // },
+
+    // get: (obj, prop) => isValidMethod(prop)
+    //                     ? (...args) => stubFetch(obj, 'call', prop, args)
+    //                     : stubFetch(obj, 'get-prop', prop),
+    // set: (obj, prop, value) => stubFetch(obj, 'set', prop, value),
   })
-
-const stubFetch = (obj, functionName, args) => {
-  const theFetch = obj.fetch(buildRequest(service, functionName, args))
-
-  return options.parse
-  ? theFetch.then(res => res.json())
-  : theFetch
-}
-
-return new Proxy(service, {
-  get: (obj, prop) => (...args) => stubFetch(obj, prop, args)
-  // get: (obj, prop) => isValidMethod(prop)
-  //                     ? (...args) => stubFetch(obj, 'call', prop, args)
-  //                     : stubFetch(obj, 'get-prop', prop),
-  // set: (obj, prop, value) => stubFetch(obj, 'set', prop, value),
-})
 }
