@@ -235,6 +235,11 @@ js-base64@^3.7.2:
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-3.7.5.tgz#21e24cf6b886f76d6f5f165bfcd69cc55b9e3fca"
   integrity sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==
 
+literal-parser@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/literal-parser/-/literal-parser-3.0.5.tgz#026c88df3eae61183c910ad010d230223eb8c32e"
+  integrity sha512-18tZoba4y2HIpiG5/GDXI3g4veIA7rVbwJdwzx0dvJdh7tRQl9fQeLEfzupiXByYKvuBqqdqo0fpUVDS2t8P2w==
+
 lodash.merge@4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"

@@ -1,0 +1,12 @@
+name = 'rpc-client'
+main = 'worker.js'
+compatibility_date = '2023-05-01'
+workers_dev = true
+usage_model = 'unbound'
+logpush = true
+
+tail_consumers = [{service = "tail", environment = "production"}]
+
+services = [
+  { binding = "RPC", service = "rpc-service" },
+]
