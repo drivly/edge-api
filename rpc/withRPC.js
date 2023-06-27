@@ -6,13 +6,7 @@ export const withRPC = (req, env, ctx)  => {
   for (const [key, binding] of Object.entries(env)) {
     console.log(key)
     if (isService(binding)) {
-      const proxied = proxyService(binding, {
-        name: key,
-        // class: classes[key], // pass in class key by default,
-        headers: Object.fromEntries(req.headers),
-        env,
-        parse,
-      })
+      const proxied = proxyService(binding)
 
       try {
         req[key] = req.services[key] = proxied
@@ -43,7 +37,7 @@ const proxyService = (service, middlewareOptions = {}) => {
   const stubFetch = (obj, functionName, args) => {
     const theFetch = obj.fetch(buildRequest(functionName, args)).then(res => res.json())
 
-    return 
+    return theFetch
 
     // return theFetch
     
@@ -53,11 +47,12 @@ const proxyService = (service, middlewareOptions = {}) => {
   }
 
   return new Proxy(service, {
+    get: (obj, functionName) => (...args) => obj.fetch(`https://${service}/${functionName}/${args}`).then(res => res.json())
     // get: (obj, prop) => (...args) => stubFetch(obj, prop, args)
-    get: (obj, prop) => {
-      console.log(obj, prop)
-      return (...args) => stubFetch(obj, prop, args)
-    },
+    // get: (obj, prop) => {
+    //   console.log(obj, prop)
+    //   return (...args) => stubFetch(obj, prop, args)
+    // },
     // apply: (obj, functionName, args) => stubFetch(obj, functionName, args),
     // apply: (obj, functionName, args) => {
     //   console.log(obj, functionName, args)
