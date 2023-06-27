@@ -1,4 +1,6 @@
 export * from '@whatwg-node/server'
+export * from 'itty-router'
+export * from 'itty-fetcher'
 
 import { createServerAdapter } from '@whatwg-node/server'
 import { createServer } from 'http'
