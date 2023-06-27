@@ -8,7 +8,7 @@ import { createServer } from 'http'
 
 export const API = options => {
   const api = BaseAPI(options)
-  api.listen = ([port, ...args]) => {
+  api.listen = (port, ...args) => {
     const service = createServerAdapter(api.fetch)
     const httpServer = createServer(service)
     httpServer.listen(port, ...args)
