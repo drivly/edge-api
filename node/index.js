@@ -9,5 +9,6 @@ export const server = (api, port = 3000) => {
   )
   const httpServer = createServer(service)
   httpServer.listen(port)
+  console.log(`Server running at http://localhost:${port}`)
 }
 
