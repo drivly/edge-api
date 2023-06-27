@@ -13,7 +13,7 @@ export const API = options => {
       const data = await api.handle(req, env, ctx)
       const responseTime = Date.now() - startTime
       const response = json(data)
-      response.headers.set('X-Response-Time', `${responseTime}ms`)
+      // response.headers.set('X-Response-Time', `${responseTime}ms`)
       // TODO: add logging
       return response
     } catch (err) {
