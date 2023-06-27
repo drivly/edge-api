@@ -1,6 +1,7 @@
 import * as Realm from 'realm-web'
 
 let App
+let user
 let client
 let db = {}
 
@@ -8,7 +9,7 @@ export const Client = async ({ appId, dataSource, env }) => {
   if (!App) {
     App = new Realm.App({ id: appId ?? env.REALM_APPID })
     const credentials = Realm.Credentials.apiKey(env.REALM_API_KEY)
-    var user = await App.logIn(credentials)
+    user = await App.logIn(credentials)
     client = user.mongoClient(dataSource ?? env.REALM_DATA_SOURCE ?? 'mongodb-atlas')
   }
   return client
