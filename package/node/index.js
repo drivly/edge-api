@@ -1,17 +1,18 @@
 export * from '@whatwg-node/server'
 export * from 'itty-router'
 export * from 'itty-fetcher'
-export { API } from '../API.js'
 
+import  { API as BaseAPI } from '../API.js'
 import { createServerAdapter } from '@whatwg-node/server'
 import { createServer } from 'http'
 
-export const server = (api, port = 3000) => {
-  const service = createServerAdapter(
-    (req, env, ctx) => api.fetch(req, env, ctx)
-  )
-  const httpServer = createServer(service)
-  httpServer.listen(port)
-  console.log(`Server running at http://localhost:${port}`)
+export const API = options => {
+  const api = BaseAPI(options)
+  api.listen = ([port, ...args]) => {
+    const service = createServerAdapter(api.fetch)
+    const httpServer = createServer(service)
+    httpServer.listen(port, ...args)
+    console.log(`Listening at http://localhost:${port}`)
+  }
+  return api
 }
-
