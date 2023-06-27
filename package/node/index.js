@@ -1,3 +1,4 @@
+export * from 'isomorphic-fetch'
 export * from '@whatwg-node/server'
 export * from 'itty-router'
 export * from 'itty-fetcher'
