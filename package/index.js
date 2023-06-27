@@ -1,8 +1,8 @@
 export * from 'itty-router'
 export * from 'itty-fetcher'
-export * from 'itty-durable'
+export { createDurable, withDurables } from 'itty-durable'
 
-export * from './middleware'
+export * from './middleware/index.js'
 export { API } from './API.js'
 export { json } from './json.js'
 

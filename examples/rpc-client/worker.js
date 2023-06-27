@@ -1,5 +1,5 @@
 import { API } from '../..'
-import { withRPC } from '../../rpc'
+import { withRPC } from '../../package/rpc'
 
 const api = API()
 

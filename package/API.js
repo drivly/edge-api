@@ -1,6 +1,6 @@
 import { error, Router, withParams, withContent } from 'itty-router'
 import { json } from './json.js'
-import { withUrl } from './middleware'
+import { withUrl } from './middleware/index.js'
 
 export const API = options => {
   const api = Router(options)

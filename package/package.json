@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.0.13",
+  "version": "0.0.16",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",
@@ -30,5 +30,9 @@
     "next-auth": "^4.22.1",
     "realm-web": "^2.0.0",
     "snakecase-keys": "^5.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "wrangler": "^3.1.1"
   }
 }
