@@ -1,4 +1,5 @@
 import { error, Router, withParams, withContent } from 'itty-router'
+import { Toucan } from 'toucan-js'
 import { json } from './json.js'
 import { withUrl } from './middleware/index.js'
 
@@ -8,6 +9,14 @@ export const API = options => {
     .all('*', withParams, withContent, withUrl)
 
   api.fetch = async (req, env, ctx) => {
+
+    const sentry = new Toucan({
+      dsn: env.SENTRY_DSN,
+      request: req,
+      // release: '1.0.0',
+      context: ctx,
+    })
+
     try {
       const startTime = Date.now()
       const data = await api.handle(req, env, ctx)
@@ -18,7 +27,7 @@ export const API = options => {
       return response
     } catch (err) {
       console.error(err)
-      // TODO: add Sentry support
+      sentry.captureException(err)
       return error(err)
     }
   }

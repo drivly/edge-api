@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",
@@ -32,7 +32,8 @@
     "literal-parser": "^3.0.5",
     "next-auth": "^4.22.1",
     "realm-web": "^2.0.0",
-    "snakecase-keys": "^5.4.5"
+    "snakecase-keys": "^5.4.5",
+    "toucan-js": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
