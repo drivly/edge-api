@@ -1,4 +1,5 @@
 import { createDurable } from 'itty-durable'
+import { fetcher } from 'itty-fetcher'
 import snakecaseKeys from 'snakecase-keys'
 
 export class GPT extends createDurable({ autoReturn: true, autoPersist: true }) {
