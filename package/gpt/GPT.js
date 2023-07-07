@@ -10,13 +10,18 @@ export class GPT extends createDurable({ autoReturn: true, autoPersist: true }) 
     })
   }
 
-  async chat({ model = 'gpt-3.5-turbo-0613', messages, user, system, ...input }) {
-    return this.openai.post('/chat/completions', {
+  async chat({ model = 'gpt-3.5-turbo-0613', messages, user, system, ...args }) {
+    const input = {
       model, 
       messages: messages ? snakecaseKeys(messages, { deep: true }) : system  
         ? [{ role: 'system', content: system }, { role: 'user', content: user }] 
         : [{ role: 'user', content: user }],
-      ...snakecaseKeys(input, { deep: true })
-    })
+      ...snakecaseKeys(args, { deep: true })
+    }
+    this.input = input
+    const result = await this.openai.post('/chat/completions', input)
+    this.result = result
+    const conversationId = this.state.id.toString()
+    return { conversationId, input, ...result }
   } 
 }
