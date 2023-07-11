@@ -1,4 +1,4 @@
-import { API } from '../..'
+import { API } from '../../package'
 import { withRPC } from '../../package/rpc'
 
 const api = API()
@@ -8,7 +8,7 @@ api
   .get('/', async ({ query, RPC }, {  }) => {
     // const results = await RPC.fetch('https://test/hello/mike').then(res => res.json())
     // const sum = RPC.sum
-    const sum = RPC.sum(1, 2, 3, 4, 5)
+    const sum = RPC.sum(1, 2)
     // const message = RPC.hello('RPC')
     return { sum, }//}message, query }
   })

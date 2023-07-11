@@ -1,4 +1,4 @@
-import { RPC } from '../../rpc'
+import { RPC } from '../../package/rpc'
 
 export default RPC({
   hello: (name = 'world') => {

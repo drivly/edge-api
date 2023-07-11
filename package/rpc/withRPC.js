@@ -2,11 +2,13 @@ export const withRPC = (req, env, ctx)  => {
   req.services = req.services || {}
 
   const parse = true // TODO: make this configurable
+  console.log(Object.entries(env))
 
-  for (const [key, binding] of Object.entries(env)) {
+  for (const [key, binding] in Object.entries(env)) {
     console.log(key)
     if (isService(binding)) {
-      const proxied = proxyService(binding)
+      console.log('is service', key)
+      const proxied = proxyService(key, binding)
 
       try {
         req[key] = req.services[key] = proxied
@@ -21,11 +23,12 @@ const isService = (item) => {
 	return !!(item).fetch
 }
 
-const proxyService = (service, middlewareOptions = {}) => {
+const proxyService = (service, handler, middlewareOptions = {}) => {
+  console.log('proxy service', service)
   const buildRequest = (functionName, args) => {
     console.log(functionName, args)
     return new Request(`https://${service}/${functionName}/${JSON.stringify(args)}`, {
-      // TODO: Figure out how to passadditional context like cf, user, headers, etc
+      // TODO: Figure out how to pass additional context like cf, user, headers, etc
       // headers: {
       //   ...headers,
       //   'x-content': JSON.stringify(content),
@@ -46,8 +49,11 @@ const proxyService = (service, middlewareOptions = {}) => {
     // : theFetch
   }
 
-  return new Proxy(service, {
-    get: (obj, functionName) => (...args) => obj.fetch(`https://${service}/${functionName}/${args}`).then(res => res.json())
+  return new Proxy(handler, {
+    get: (obj, functionName) => (...args) => {
+      console.log('in proxy `get`', `https://${service}/${functionName}/${args}`)
+      return obj.fetch(`https://${service}/${functionName}/${args}`).then(res => res.json())
+    }
     // get: (obj, prop) => (...args) => stubFetch(obj, prop, args)
     // get: (obj, prop) => {
     //   console.log(obj, prop)
