@@ -1,6 +1,5 @@
 export * from 'itty-router'
 export * from 'itty-fetcher'
-export * from 'itty-durable'
 export * from 'toucan-js'
 
 export * from './middleware/index.js'
