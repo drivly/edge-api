@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",
@@ -37,6 +37,6 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
-    "wrangler": "^3.2.0"
+    "wrangler": "^3.3.0"
   }
 }
