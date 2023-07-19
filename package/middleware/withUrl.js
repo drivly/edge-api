@@ -6,6 +6,7 @@ export const withUrl = (req, env, ctx) => {
   req.hostname = hostname
   req.tld = tld
   req.sld = sld
+  req.domain = sld + '.' + tld
   req.subdomain = subdomain
   req.pathname = pathname
   req.search = search
