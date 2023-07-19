@@ -5,12 +5,13 @@ let recentInteractions = 0
 export const withContext = (req, env, ctx) => {
 
   const { user } = req
+  
   recentInteractions++
 
   req.ua = new UAParser(req.headers.get('user-agent')).getResult()
 
   req.user = {
-    ...user,
+    ...req.user,
     anonymous: user?.name ? undefined : true,
     ip: req.headers.get('cf-connecting-ip'),
     isp: req.cf.asOrganization,
