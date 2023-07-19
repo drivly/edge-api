@@ -1,3 +1,4 @@
+import { error } from '.'
 import { decode } from 'next-auth/jwt'
 import { withCookies } from 'itty-router'
 
