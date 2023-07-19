@@ -6,20 +6,20 @@ const cookies = {}
 export const withUser = async (req, env, ctx) => {
   withCookies(req)
   if (cookies[req.cookies['__Secure-next-auth.session-token']]) {
-    req.user = cookies[req.cookies['__Secure-next-auth.session-token']]
+    req.user = {...cookies[req.cookies['__Secure-next-auth.session-token']], ...req.user }
   } else {
     const { name, email, image } = await decode({
       token: req.cookies['__Secure-next-auth.session-token'],
       secret: env.JWT_SECRET,
     }) || {}
-    req.user = { name, email, image }
+    req.user = { name, email, image, ...req.user }
     cookies[req.cookies['__Secure-next-auth.session-token']] = req.user
   }
   console.info('withUser', req.user)
 }
 
 export const assertUser = (req, env, ctx) => {
-  if (!req.user) {
+  if (!req.user?.email) {
     return error(401, { message: 'Unauthorized' })
   }
 }
