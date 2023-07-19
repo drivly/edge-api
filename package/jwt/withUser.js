@@ -1,6 +1,5 @@
-import { error } from '.'
 import { decode } from 'next-auth/jwt'
-import { withCookies } from 'itty-router'
+import { error, withCookies } from 'itty-router'
 
 const cookies = {}
 
