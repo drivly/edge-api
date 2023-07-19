@@ -24,6 +24,7 @@ export const API = options => {
       const responseTime = Date.now() - startTime
       const { user } = req
       user.serviceLatency = responseTime
+      // const response = json(data)
       const response = isResponse(data) ? data : json({ '@context': req.origin, ...data, user })
       // response.headers.set('X-Response-Time', `${responseTime}ms`)
       // TODO: add logging

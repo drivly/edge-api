@@ -2,7 +2,7 @@ import UAParser from 'ua-parser-js'
 
 let recentInteractions = 0
 
-export const withContext = async (req, env, ctx) => {
+export const withContext = (req, env, ctx) => {
 
   const { user } = req
   recentInteractions++
