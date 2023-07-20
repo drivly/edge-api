@@ -13,8 +13,8 @@ export const withUser = async (req, env, ctx) => {
       secret: env.JWT_SECRET,
     }) || {}
     const { name, email, picture: image } = user
-    const account = req.origin + '/_account'
-    const logs = req.origin + '/_logs'
+    const account = email ? req.origin + '/_account' : undefined
+    const logs = email ? req.origin + '/_logs' : undefined
     req.user = { name, email, image, account, logs, ...req.user }
     cookies[req.cookies['__Secure-next-auth.session-token']] = req.user
   }

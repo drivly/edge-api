@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.0.55",
+  "version": "0.0.57",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",

@@ -53,5 +53,17 @@ export const API = (options = {}) => {
       return error(err)
     }
   }
-  return api
+  return {
+    all: api.all,
+    get: api.get,
+    post: api.post,
+    put: api.put,
+    patch: api.patch,
+    delete: api.delete,
+    options: api.options,
+    head: api.head,
+    handle: api.handle,
+    routes: api.routes,
+    fetch: api.fetch,
+  }
 }
