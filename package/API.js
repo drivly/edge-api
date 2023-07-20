@@ -4,8 +4,8 @@ import { json } from './json.js'
 import { withContext, withUrl } from './middleware/index.js'
 import { isResponse } from './utils/isResponse.js'
 
-export const API = options => {
-  const { domain, description, site, repo, type, from, prices, dsn, base, routes } = options
+export const API = (options = {}) => {
+  const { domain, description, site, url, repo, type, from, prices, dsn, base, routes } = options
   const api = Router({ base, routes })
   api
     .all('*', withParams, withContent, withUrl, withContext)
@@ -30,7 +30,7 @@ export const API = options => {
       const metadata = {
         name: domain ?? hostname,
         description,
-        url: base,
+        url: url ?? base,
         login: `${base}/login`,
         signup: `${base}/signup`,
         subscribe: prices ? `${base}/subscribe` : undefined,
