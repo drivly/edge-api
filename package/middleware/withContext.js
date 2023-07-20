@@ -4,7 +4,7 @@ let recentInteractions = 0
 
 export const withContext = (req, env, ctx) => {
 
-  const { user } = req
+  const { origin, user } = req
 
   recentInteractions++
 
@@ -13,6 +13,8 @@ export const withContext = (req, env, ctx) => {
   req.user = {
     ...req.user,
     // anonymous: user?.name ? undefined : true,
+    account: req.user?.email ? origin + '/_profile' : undefined,
+    logs: req.user?.email ? origin + '/_logs' : undefined,
     ip: req.headers.get('cf-connecting-ip'),
     isp: req.cf.asOrganization,
     browser: req.ua.browser?.name ? req.ua.browser?.name + (req.ua.browser?.name ? ' on ' + req.ua.os?.name : '') : undefined,
