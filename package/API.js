@@ -1,4 +1,4 @@
-import { error, Router, withParams, withContent } from 'itty-router'
+import { createCors, error, Router, withParams, withContent } from 'itty-router'
 import { Toucan } from 'toucan-js'
 import { json } from './json.js'
 import { withContext, withUrl } from './middleware/index.js'
@@ -6,9 +6,10 @@ import { isResponse } from './utils/isResponse.js'
 
 export const API = (options = {}) => {
   const { domain, description, site, url, repo, type, from, prices, dsn, base, routes } = options
+  const { preflight, corsify } = createCors({ maxAge: 86400 })
   const api = Router({ base, routes })
   api
-    .all('*', withParams, withContent, withUrl, withContext)
+    .all('*', preflight, withParams, withContent, withUrl, withContext)
 
   api.fetch = async (req, env, ctx) => {
 
@@ -46,11 +47,11 @@ export const API = (options = {}) => {
           : json({ api: metadata, ...data, user })
       // response.headers.set('X-Response-Time', `${responseTime}ms`)
       // TODO: add logging
-      return response
+      return corsify(response)
     } catch (err) {
       console.error(err)
       sentry.captureException(err)
-      return error(err)
+      return corsify(error(err))
     }
   }
   return {
