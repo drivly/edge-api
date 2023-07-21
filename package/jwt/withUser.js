@@ -14,8 +14,8 @@ export const withUser = async (req, env, ctx) => {
     }) || {}
     const { name, email, picture: image } = user
     const account = email ? req.origin + '/_account' : undefined
-    const logs = email ? req.origin + '/_logs' : undefined
-    req.user = { name, email, image, account, logs, ...req.user }
+    // const logs = email ? req.origin + '/_logs' : undefined
+    req.user = { name, email, image, account, ...req.user }
     cookies[req.cookies['__Secure-next-auth.session-token']] = req.user
   }
   console.info('withUser', req.user)
