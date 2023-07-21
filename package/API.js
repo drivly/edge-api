@@ -55,7 +55,7 @@ export const API = (options = {}) => {
         from,
       }
       const response = isResponse(data) ? data : 
-        query?._raw ? json(data) : Array.isArray(data) 
+        query?._raw == '' ? json(data) : Array.isArray(data) 
           ? json({ api: metadata, data, user })
           : json({ api: metadata, ...data, user })
       // response.headers.set('X-Response-Time', `${responseTime}ms`)
