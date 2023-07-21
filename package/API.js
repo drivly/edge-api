@@ -54,10 +54,11 @@ export const API = (options = {}) => {
         type,
         from,
       }
+      const debug = query?._debug == '' ? { cf: req.cf, headers: Object.fromEntries(req.headers) } : undefined
       const response = isResponse(data) ? data : 
         query?._raw == '' ? json(data) : Array.isArray(data) 
-          ? json({ api: metadata, data, user })
-          : json({ api: metadata, ...data, user })
+          ? json({ api: metadata, data, user, ...debug })
+          : json({ api: metadata, ...data, user, ...debug })
       // response.headers.set('X-Response-Time', `${responseTime}ms`)
       // TODO: add request logging
       // TODO: add complete request/response logging if configured
