@@ -8,8 +8,21 @@ export const API = (options = {}) => {
   const { domain, description, site, url, repo, type, from, prices, dsn, base, routes } = options
   const { preflight, corsify } = createCors({ maxAge: 86400 })
   const api = Router({ base, routes })
+  // const _api = Router({ base })
+  // _api
+  //   .get('/_/:path+?', async (req, env, ctx) => {}) // TODO: add Monaco-based UI to visualize/edit JSON and YAML data
+  //   .get('/_logs', async (req, env, ctx) => {}) // TODO: query recent logs
+  //   .get('/_logs/:id', async (req, env, ctx) => {}) // TODO: query specific log
+
   api
     .all('*', preflight, withParams, withContent, withUrl, withContext)
+    // TODO: add `_` routes for internal use on a seperate router
+    // .get('/_logs', withUser, assertUser, withDB, async (req, env, ctx) => {
+    // TODO: add /login, /logout, /signup, /account, /profile routes
+    // TODO: add OpenAPI routes
+    // TODO: add Docs UI from OpenAPI routes
+
+  
 
   api.fetch = async (req, env, ctx) => {
 
@@ -24,7 +37,7 @@ export const API = (options = {}) => {
       const startTime = Date.now()
       const data = await api.handle(req, env, ctx)
       const responseTime = Date.now() - startTime
-      const { origin, hostname, user } = req
+      const { origin, hostname, user, query } = req
       user.serviceLatency = responseTime
       // const response = json(data)
       const base = domain ? `https://${domain}`.toLowerCase() : origin
@@ -42,11 +55,14 @@ export const API = (options = {}) => {
         from,
       }
       const response = isResponse(data) ? data : 
-        Array.isArray(data) 
+        query?._raw ? json(data) : Array.isArray(data) 
           ? json({ api: metadata, data, user })
           : json({ api: metadata, ...data, user })
       // response.headers.set('X-Response-Time', `${responseTime}ms`)
-      // TODO: add logging
+      // TODO: add request logging
+      // TODO: add complete request/response logging if configured
+      // TODO: change cors to be optional
+      // TODO: add open telemetry if configured
       return corsify(response)
     } catch (err) {
       console.error(err)
@@ -66,5 +82,13 @@ export const API = (options = {}) => {
     handle: api.handle,
     routes: api.routes,
     fetch: api.fetch,
+    // TODO: add queue handler
+    // queue: (queue, env, ctx) => {},
+    // TODO: add cron handler
+    // scheduled: (event, env, ctx) => {},
+    // TODO: add tail handler
+    // tail: (events, env, ctx) => {}
+    // TODO: add email handler
+    // email: (message, env, ctx) => {},
   }
 }

@@ -12,8 +12,8 @@ export const withContext = (req, env, ctx) => {
 
   req.user = {
     ...req.user,
-    // anonymous: user?.name ? undefined : true,
-    // account: req.user?.email ? origin + '/_profile' : undefined,
+    anonymous: req.user?.email ? undefined : true,
+    profile: req.user?.email ? origin + '/_profile' : undefined,
     // logs: req.user?.email ? origin + '/_logs' : undefined,
     ip: req.headers.get('cf-connecting-ip'),
     isp: req.cf.asOrganization,
@@ -26,8 +26,11 @@ export const withContext = (req, env, ctx) => {
     localTime: new Date().toLocaleString('en-US', { timeZone: req.cf.timezone }),
     timezone: req.cf.timezone,
     requestId: req.headers.get('cf-ray') + '-' + req.cf.colo,
+    trace: origin + '/_logs/' + req.headers.get('cf-ray'),
     clientLatency: req.cf.clientTcpRtt,
     recentInteractions,
+    cf: req.query?._debug ? req.cf : undefined,
+    headers: req.query?._debug ? req.headers : undefined,
     // ua: req.ua,
     // backendLatency: req.cf.timeToFirstByte,
     // cf: req.cf, 
