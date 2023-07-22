@@ -48,7 +48,10 @@ export const captureAnalytics = async (req, env, ctx, res) => {
       id
     ] 
   }
-  env?.analytics?.writeDataPoint(data).catch(err => {
+
+  const analytics = env?.ANALYTICS ?? env?.Analytics ?? env?.analytics
+
+  await analytics?.writeDataPoint(data).catch(err => {
     console.log(data)
     console.error(err)
   })

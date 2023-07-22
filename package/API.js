@@ -3,7 +3,7 @@ import { Toucan } from 'toucan-js'
 import { json } from './json.js'
 import { withContext, withUrl } from './middleware/index.js'
 import { isResponse } from './utils/isResponse.js'
-import { captureAnalytics } from './analytics/captureAnalytics.js'
+import { captureAnalytics } from './analytics/capture.js'
 
 export const API = (options = {}) => {
   const { domain, description, site, url, repo, type, from, prices, dsn, base, routes } = options
