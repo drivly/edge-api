@@ -3,6 +3,7 @@ import { Toucan } from 'toucan-js'
 import { json } from './json.js'
 import { withContext, withUrl } from './middleware/index.js'
 import { isResponse } from './utils/isResponse.js'
+import { captureAnalytics } from './analytics/captureAnalytics.js'
 
 export const API = (options = {}) => {
   const { domain, description, site, url, repo, type, from, prices, dsn, base, routes } = options
@@ -60,6 +61,7 @@ export const API = (options = {}) => {
           ? json({ api: metadata, data, user, ...debug })
           : json({ api: metadata, ...data, user, ...debug })
       // response.headers.set('X-Response-Time', `${responseTime}ms`)
+      ctx.waitUntil(captureAnalytics(req, env, ctx, response))
       // TODO: add request logging
       // TODO: add complete request/response logging if configured
       // TODO: change cors to be optional

@@ -1,1 +1,1 @@
-export * from './Analytics.js'
+export * from './captureAnalytics.js'
