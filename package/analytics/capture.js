@@ -12,11 +12,13 @@ export const captureAnalytics = async (req, env, ctx, res) => {
   const userAgent = req.headers.get('user-agent')
   const data = {
     'blobs': [
+      url.slice(0, 4000),
+      method,
       hostname,
       pathname,
       search,
-      method,
       ip,
+      cf?.asOrganization, 
       cf?.colo, 
       cf?.country, 
       cf?.city, 
