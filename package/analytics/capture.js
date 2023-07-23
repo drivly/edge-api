@@ -26,7 +26,7 @@ export const captureAnalytics = async (req, env, ctx, res) => {
       cf?.region, 
       cf?.timezone,
       user?.name,
-      user?.email,
+      user?.email ?? req.headers.get('from'),
       worker,
       userAgent,
       referer,
