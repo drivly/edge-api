@@ -12,7 +12,7 @@ export const withContext = (req, env, ctx) => {
 
   req.user = {
     ...req.user,
-    anonymous: req.user?.email ? undefined : true,
+    // anonymous: req.user?.email ? undefined : true,
     // profile: req.user?.email ? origin + '/_profile' : undefined,
     // logs: req.user?.email ? origin + '/_logs' : undefined,
     ip: req.headers.get('cf-connecting-ip'),
