@@ -9,7 +9,7 @@ export const withUser = async (req, env, ctx) => {
     req.user = {...cookies[req.cookies['__Secure-next-auth.session-token']], ...req.user }
   } else {
     const user = await decode({
-      token: req.cookies['__Secure-next-auth.session-token'],
+      token: req.cookies['__Secure-next-auth.session-token'] ?? req.cookies['next-auth.session-token'],
       secret: env.JWT_SECRET,
     }) || {}
     const { name, email, picture: image } = user
