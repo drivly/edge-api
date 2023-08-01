@@ -6,7 +6,7 @@ import { isResponse } from './utils/isResponse.js'
 import { captureAnalytics } from './analytics/capture.js'
 
 export const API = (options = {}) => {
-  const { domain, description, site, url, repo, type, from, prices, dsn, base, routes } = options
+  const { domain, description, site, url, docs, repo, type, from, prices, dsn, base, routes } = options
   const { preflight, corsify } = createCors({ maxAge: 86400 })
   const api = Router({ base, routes })
   // const _api = Router({ base })
@@ -51,6 +51,7 @@ export const API = (options = {}) => {
         signup: user?.email ? undefined : `${base}/signup`,
         subscribe: prices ? (user?.email ? undefined : `${base}/subscribe`) : undefined,
         site,
+        docs,
         repo,
         type,
         from,
