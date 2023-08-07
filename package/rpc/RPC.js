@@ -1,5 +1,5 @@
 import { API, error } from '..'
-// import { Parser }  from 'literal-parser'
+// import { Parser }  from '@dldc/literal-parser'
 
 export const RPC = functions => {
   const api = API()

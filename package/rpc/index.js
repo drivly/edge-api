@@ -1,4 +1,4 @@
-export { Parser, Serializer }  from 'literal-parser'
+export { Parser, Serializer }  from '@dldc/literal-parser'
 
 export * from './RPC.js'
 export * from './withRPC.js'

@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/nathanclevenger/edge-api#readme",
   "sideEffects": false,
   "dependencies": {
+    "@dldc/literal-parser": "^3.0.7",
     "@microlabs/otel-cf-workers": "^1.0.0-rc.6",
     "@upstash/kafka": "^1.3.3",
     "@upstash/redis": "^1.22.0",
@@ -30,7 +31,6 @@
     "itty-durable": "^2.1.0",
     "itty-fetcher": "^0.8.1",
     "itty-router": "^4.0.14",
-    "literal-parser": "^3.0.5",
     "next-auth": "^4.22.1",
     "punycode": "^2.3.0",
     "realm-web": "^2.0.0",
