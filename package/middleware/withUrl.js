@@ -10,4 +10,5 @@ export const withUrl = (req, env, ctx) => {
   req.subdomain = subdomain
   req.pathname = pathname
   req.search = search
+  req.withQuery = query => req.origin + req.pathname + '?' + new URLSearchParams({ ...req.query, ...query }).toString()
 }
