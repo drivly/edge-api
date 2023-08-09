@@ -1,5 +1,5 @@
 import { Stopwatch } from './stopwatch'
-import { json, sha256 } from './utils'
+import { sha256 } from './utils'
 
 let cache
 
