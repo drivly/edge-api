@@ -1,4 +1,5 @@
 import UAParser from 'ua-parser-js'
+import languageParser from 'accept-language-parser'
 
 let recentInteractions = 0
 
@@ -9,6 +10,7 @@ export const withContext = (req, env, ctx) => {
   recentInteractions++
 
   req.ua = new UAParser(req.headers.get('user-agent')).getResult()
+  req.languages = languageParser.parse(req.headers.get('accept-language') ?? 'en-US')
 
   req.user = {
     ...req.user,
