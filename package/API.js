@@ -56,7 +56,7 @@ export const API = (options = {}) => {
         type,
         from,
       }
-      const debug = query?._debug == '' ? { cf: req.cf, headers: Object.fromEntries(req.headers), cookies: req.cookies, languages: req.languages } : undefined
+      const debug = query?._debug == '' ? { cf: req.cf, headers: Object.fromEntries(req.headers), cookies: req.cookies, languages: req.languages, query: req.query, params: req.params } : undefined
       const response = isResponse(data) ? data : 
         query?._raw == '' ? json(data) : Array.isArray(data) 
           ? json({ api: metadata, data, user, ...debug })
