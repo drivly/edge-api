@@ -1,5 +1,7 @@
 import { decode } from 'next-auth/jwt'
-import { error, withCookies } from 'itty-router'
+import { withCookies } from 'itty-router'
+
+export { assertUser, assertUserEmail } from '../middleware/assertUser.js'
 
 const cookies = {}
 
@@ -19,31 +21,4 @@ export const withUser = async (req, env, ctx) => {
     cookies[req.cookies['__Secure-next-auth.session-token']] = req.user
   }
   console.info('withUser', req.user)
-}
-
-export const assertUser = (req, env, ctx) => {
-  if (!req.user?.email) {
-    return error(401, { message: 'Unauthorized' })
-  }
-}
-
-export const assertUserEmail = email => (req, env, ctx) => {
-  if (!req.user) {
-    return error(401, { message: 'Unauthorized' })
-  }
-  if (typeof email === 'string') {
-    if (req.user.email !== email) {
-      return error(401, { message: 'Unauthorized' })
-    }
-  } else if (Array.isArray(email)) {
-    if (!email.includes(req.user.email)) {
-      return error(401, { message: 'Unauthorized' })
-    }
-  } else if (email instanceof RegExp) {
-    if (!email.test(req.user.email)) {
-      return error(401, { message: 'Unauthorized' })
-    }
-  } else {
-    return error(500, { message: 'Invalid assertUserEmail email value' })
-  }
 }

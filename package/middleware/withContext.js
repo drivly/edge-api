@@ -3,7 +3,7 @@ import languageParser from 'accept-language-parser'
 
 let recentInteractions = 0
 
-export const withContext = (req, env, ctx) => {
+export const withContext = async (req, env, ctx) => {
 
   const { origin, user } = req
 
@@ -11,6 +11,13 @@ export const withContext = (req, env, ctx) => {
 
   req.ua = new UAParser(req.headers.get('user-agent')).getResult()
   req.languages = languageParser.parse(req.headers.get('accept-language') ?? 'en-US')
+
+  if (typeof(env.AUTH?.fetch) == 'function') {
+    const auth = await env.AUTH.fetch(req).then(res => res.json()).catch(err => console.error(err))
+    const { name, email, image } = auth.user
+    const account = email ? req.origin + '/_account' : undefined
+    req.user = { name, email, image, account, ...req.user }
+  }
 
   req.user = {
     ...req.user,
