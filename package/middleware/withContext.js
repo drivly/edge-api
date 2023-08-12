@@ -14,7 +14,7 @@ export const withContext = async (req, env, ctx) => {
 
   if (typeof(env.AUTH?.fetch) == 'function') {
     const auth = await env.AUTH.fetch(req).then(res => res.json()).catch(err => console.error(err))
-    const { name, email, image } = auth.user
+    const { name, email, image } = auth?.user
     const account = email ? req.origin + '/_account' : undefined
     req.user = { name, email, image, account, ...req.user }
   }
