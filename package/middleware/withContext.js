@@ -1,5 +1,5 @@
 import UAParser from 'ua-parser-js'
-import languageParser from 'accept-language-parser'
+// import languageParser from 'accept-language-parser'
 
 let recentInteractions = 0
 
@@ -10,10 +10,10 @@ export const withContext = async (req, env, ctx) => {
   recentInteractions++
 
   req.ua = new UAParser(req.headers.get('user-agent')).getResult()
-  req.languages = languageParser.parse(req.headers.get('accept-language') ?? 'en-US')
+  // req.languages = languageParser.parse(req.headers.get('accept-language') ?? 'en-US')
 
   if (typeof(env.AUTH?.fetch) == 'function') {
-    const auth = await env.AUTH.fetch(req).then(res => res.json()).catch(err => console.error(err))
+    const auth = await env.AUTH.fetch(req.url, { headers: req.headers, cf: req.cf }).then(res => res.json()) //.catch(err => console.error(err))
     const { name, email, image } = auth?.user
     const account = email ? req.origin + '/_account' : undefined
     req.user = { name, email, image, account, ...req.user }
@@ -27,7 +27,7 @@ export const withContext = async (req, env, ctx) => {
     ip: req.headers.get('cf-connecting-ip'),
     isp: req.cf.asOrganization,
     browser: req.ua.browser?.name ? req.ua.browser?.name + (req.ua.browser?.name ? ' on ' + req.ua.os?.name : '') : undefined,
-    userAgent: req.ua.browser?.name ? undefined : req.headers.get('user-agent'),
+    userAgent: req.ua?.browser?.name ? undefined : req.headers.get('user-agent'),
     // city: req.cf.city,
     // region: req.cf.region,
     // timezone: req.cf.timezone,
