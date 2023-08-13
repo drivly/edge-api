@@ -86,6 +86,7 @@ export const API = (options = {}) => {
     handle: api.handle,
     routes: api.routes,
     fetch: api.fetch,
+    options,
     // TODO: add queue handler
     // queue: (queue, env, ctx) => {},
     // TODO: add cron handler
