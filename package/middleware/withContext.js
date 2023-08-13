@@ -33,7 +33,7 @@ export const withContext = async (req, env, ctx) => {
     // timezone: req.cf.timezone,
     location: `${req.cf?.city}, ${req.cf?.region}, ${req.cf?.country}`,
     localTime: req.cf?.timezone ? new Date().toLocaleString('en-US', { timeZone: req.cf?.timezone }) : undefined,
-    timezone: req.cf?.timezone,
+    timeZone: req.cf?.timezone,
     requestId: req.headers.get('cf-ray') + '-' + req.cf?.colo,
     // trace: origin + '/_logs/' + req.headers.get('cf-ray'),
     clientLatency: req.cf?.clientTcpRtt,
