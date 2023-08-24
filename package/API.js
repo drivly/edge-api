@@ -6,7 +6,7 @@ import { isResponse } from './utils/isResponse.js'
 import { captureAnalytics } from './analytics/capture.js'
 
 export const API = (options = {}) => {
-  const { domain, description, site, url, docs, repo, type, from, prices, dsn, base, routes } = options
+  const { domain, description, site, url, endpoints, docs, repo, type, from, prices, dsn, base, routes } = options
   const { preflight, corsify } = createCors({ maxAge: 86400 })
   const api = Router({ base, routes })
   // const _api = Router({ base })
@@ -46,6 +46,7 @@ export const API = (options = {}) => {
         name: domain ?? hostname,
         description,
         url: url ?? base,
+        endpoints,
         login: user?.email ? undefined : `${base}/login`,
         account: user?.email ? `${base}/account` : undefined,
         signup: user?.email ? undefined : `${base}/signup`,
@@ -71,7 +72,8 @@ export const API = (options = {}) => {
     } catch (err) {
       console.error(err)
       sentry.captureException(err)
-      return corsify(error(err))
+      const { message } = err
+      return corsify(error(500, { api, error: { message, ...err }, user }))
     }
   }
   return {

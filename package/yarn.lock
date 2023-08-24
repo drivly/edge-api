@@ -729,10 +729,10 @@ has-flag@^3.0.0:
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
   integrity sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==
 
-hono@^3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/hono/-/hono-3.3.2.tgz#2d5ee13ba03668862ad7ceaca5ccbf1a003d5533"
-  integrity sha512-7rsgLAUXTdxo2qU/+uso5oZiiNruB9++1TMxcy95c+pTK822L0ORuug5aPVr6JkYgLkkL3w4i1Y9zrcLZJBp8A==
+hono@^3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/hono/-/hono-3.5.4.tgz#66057d4c1ee127faafa087168af6d569ab25f5e7"
+  integrity sha512-GrRBIJhZ+tG+8RtoyPQjvqPGwppERmayyTiPKano4egmpkJf1XiptESUYK5vKHICNaJksAKB9jzy1CmOdQENPA==
 
 http-cache-semantics@^4.1.0:
   version "4.1.1"
@@ -801,10 +801,10 @@ itty-fetcher@^0.8.1:
   resolved "https://registry.yarnpkg.com/itty-fetcher/-/itty-fetcher-0.8.1.tgz#b73b6c529a520e30aca52c04a0c1ee202255cad2"
   integrity sha512-ZR5L+Af1nqdg3UI3js/0BlXqvyxY0cANVZmQH1coBBJFt4GWWayfkVQCYja6t1+brtjC3eUCiYuPutptf3WP3g==
 
-itty-router@^4.0.14:
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/itty-router/-/itty-router-4.0.14.tgz#5ca9aa5647e0d1a450c8d484d3502217d588878a"
-  integrity sha512-s8DfaLkQp+E3kBhjwto3Z91ozulotCLAmlS8AIr230NqwFJssiGIoewo1P+CEkZ3YrzghS9k/RVvmMlvKQxueQ==
+itty-router@^4.0.22:
+  version "4.0.22"
+  resolved "https://registry.yarnpkg.com/itty-router/-/itty-router-4.0.22.tgz#2a5ba61f6b1df261d8321e8d218edcb0b59a0001"
+  integrity sha512-FWK13vcITqld32NaOh+k2unRrR4qBZdzA9O1ctpqT1Q4lxKrHbtgaX1lLTv2VyXj3/8Waqk/NlDGNfxypJ8GKA==
 
 jose@^4.11.4, jose@^4.14.1:
   version "4.14.4"
