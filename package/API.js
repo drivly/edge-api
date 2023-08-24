@@ -34,6 +34,8 @@ export const API = (options = {}) => {
       context: ctx,
     })
 
+    let metadata
+
     try {
       const startTime = Date.now()
       const data = await api.handle(req, env, ctx)
@@ -42,7 +44,7 @@ export const API = (options = {}) => {
       user.serviceLatency = responseTime
       // const response = json(data)
       const base = domain ? `https://${domain}`.toLowerCase() : origin
-      const metadata = {
+      metadata = {
         name: domain ?? hostname,
         description,
         url: url ?? base,
@@ -73,7 +75,7 @@ export const API = (options = {}) => {
       console.error(err)
       sentry.captureException(err)
       const { message } = err
-      return corsify(error(500, { api, error: { message, ...err }, user }))
+      return corsify(error(500, { api: metadata, error: { message, ...err }, user: req.user }))
     }
   }
   return {
