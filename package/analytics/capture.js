@@ -58,7 +58,7 @@ export const captureAnalytics = async (req, env, ctx, res) => {
 
   if (req.logBody) {
     if (req.content) console.info('requestBody', req.content)
-    responseDataPromise = res?.json().then(data => console.info('responseBody', data)).catch(err => console.error(err))
+    responseDataPromise = res?.clone().json().then(data => console.info('responseBody', data)).catch(err => console.error(err))
   }
 
   try {
