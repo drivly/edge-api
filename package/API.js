@@ -38,7 +38,7 @@ export const API = (options = {}) => {
 
     try {
       const startTime = Date.now()
-      if (logBody || env.LOG_BODY) req.logBody = true
+      if (env.LOG_BODY || logBody) req.logBody = true
       const data = await api.handle(req, env, ctx)
       const responseTime = Date.now() - startTime
       const { origin, hostname, user, query } = req
