@@ -53,11 +53,21 @@ export const captureAnalytics = async (req, env, ctx, res) => {
 
   const analytics = env?.ANALYTICS ?? env?.Analytics ?? env?.analytics
 
+
+  let responseDataPromise
+
+  if (req.logBody) {
+    if (req.content) console.info('requestBody', req.content)
+    responseDataPromise = res?.json().then(data => console.info('responseBody', data)).catch(err => console.error(err))
+  }
+
   try {
     await analytics?.writeDataPoint(data)
   } catch (err) {
     console.log(data)
     console.error(err)
   }
+
+  await responseDataPromise
   
 }
