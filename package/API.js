@@ -6,7 +6,7 @@ import { isResponse } from './utils/isResponse.js'
 import { captureAnalytics } from './analytics/capture.js'
 
 export const API = (options = {}) => {
-  const { domain, description, site, url, endpoints, docs, repo, type, from, prices, dsn, base, routes } = options
+  const { domain, description, site, url, endpoints, docs, repo, type, from, prices, dsn, base, routes, logBody } = options
   const { preflight, corsify } = createCors({ maxAge: 86400 })
   const api = Router({ base, routes })
   // const _api = Router({ base })
@@ -38,6 +38,7 @@ export const API = (options = {}) => {
 
     try {
       const startTime = Date.now()
+      if (logBody || env.LOG_BODY) req.logBody = true
       const data = await api.handle(req, env, ctx)
       const responseTime = Date.now() - startTime
       const { origin, hostname, user, query } = req
