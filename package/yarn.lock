@@ -398,6 +398,11 @@ anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+api.ht@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/api.ht/-/api.ht-0.0.1.tgz#17dab31da974d2fd4b3389e9c5ed85f22c80d20f"
+  integrity sha512-clHqIl+l7w/xPIj4T9hCryUNCzAaPG4qJz8iUC6BMTM27yqEgIsQyqvfjejpKovr2yNkZnRos07YFrwLEsnEGw==
+
 as-table@^1.0.36:
   version "1.0.55"
   resolved "https://registry.yarnpkg.com/as-table/-/as-table-1.0.55.tgz#dc984da3937745de902cea1d45843c01bdbbec4f"
