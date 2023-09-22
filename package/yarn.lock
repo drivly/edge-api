@@ -41,10 +41,10 @@
   resolved "https://registry.yarnpkg.com/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20230904.0.tgz#4274530cd9b469248060f0222e31588193e555db"
   integrity sha512-/R/dE8uy+8J2YeXfDhI8/Bg7YUirdbbjH5/l/Vv00ZRE0lC3nPLcYeyBXSwXIQ6/Xht3gN+lksLQgKd0ZWRd+Q==
 
-"@dldc/literal-parser@^3.0.7":
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/@dldc/literal-parser/-/literal-parser-3.0.7.tgz#72ba0a3df104738b86e41e05c874c7f000705ac3"
-  integrity sha512-CnApzpLgML6WCfbylDMsKACldhxre8RjRCs5sErO/6w9G0NlwflBx47eLhA6FC+H4ahsgAoY0c+5dj2U/eUDIg==
+"@dldc/literal-parser@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@dldc/literal-parser/-/literal-parser-3.1.0.tgz#13a1ee94f514c1759e6357811b7bcdc34662a658"
+  integrity sha512-XsSLtmNIr2JQ9UeTIHfHoUDsDBv0WBb7SdCsESo44R+KpnQ85Zr81gq+ttgGUp8d2uJr7Xo7Xptfk+z3ShzmmA==
 
 "@esbuild-plugins/node-globals-polyfill@^0.2.3":
   version "0.2.3"
