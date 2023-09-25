@@ -46,9 +46,7 @@ export const captureAnalytics = async (req, env, ctx, res) => {
       res?.status,
       res?.headers?.get('content-length'),
     ],
-    'indexes': [
-      id
-    ] 
+    'indexes': [ id ] // Use a unique identifieras the sampling index to avoid sampling (the ray ID in this case) 
   }
 
   const analytics = env?.ANALYTICS ?? env?.Analytics ?? env?.analytics
