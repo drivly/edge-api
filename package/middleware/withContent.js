@@ -1,4 +1,8 @@
 export const withContent = async req => {
-  if (req.body)
-    req.content = await req.json().catch()
+  try {
+    if (req.body) {
+      req.content = await req.text()
+      req.content = JSON.parse(req.content)
+    }
+  } catch (error) { }
 }
