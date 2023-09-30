@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.1.49",
+  "version": "0.1.50",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",
@@ -31,8 +31,8 @@
     "hono": "^3.5.4",
     "isomorphic-fetch": "^3.0.0",
     "itty-durable": "^2.1.0",
-    "itty-fetcher": "^0.8.1",
-    "itty-router": "^4.0.22",
+    "itty-fetcher": "^0.9.3",
+    "itty-router": "^4.0.23",
     "next-auth": "^4.22.1",
     "punycode": "^2.3.0",
     "realm-web": "^2.0.0",

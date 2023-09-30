@@ -713,15 +713,15 @@ itty-durable@^2.1.0:
   resolved "https://registry.yarnpkg.com/itty-durable/-/itty-durable-2.1.0.tgz#a98aa85e09eaa1fa3c38fc6c71bbfd48edeecee9"
   integrity sha512-iOfuUcMCMVfTS+qqd0miRw9caH+DuonwALoBGlfjqT6ed6yyskI2sWX6gAtDQsaueCRl3BdYRVpvlVNsuNsiNw==
 
-itty-fetcher@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/itty-fetcher/-/itty-fetcher-0.8.1.tgz#b73b6c529a520e30aca52c04a0c1ee202255cad2"
-  integrity sha512-ZR5L+Af1nqdg3UI3js/0BlXqvyxY0cANVZmQH1coBBJFt4GWWayfkVQCYja6t1+brtjC3eUCiYuPutptf3WP3g==
+itty-fetcher@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/itty-fetcher/-/itty-fetcher-0.9.3.tgz#73252ee5a1334c2b3484950207a02e0182550ea1"
+  integrity sha512-KujeupW5g4Z7961futjg8AXeTjkOahlq1KAZ84fRkaF44l1hOoewKuyw8/cRh1/TmudiYzqhrxOyMcJ5WPoLUw==
 
-itty-router@^4.0.22:
-  version "4.0.22"
-  resolved "https://registry.yarnpkg.com/itty-router/-/itty-router-4.0.22.tgz#2a5ba61f6b1df261d8321e8d218edcb0b59a0001"
-  integrity sha512-FWK13vcITqld32NaOh+k2unRrR4qBZdzA9O1ctpqT1Q4lxKrHbtgaX1lLTv2VyXj3/8Waqk/NlDGNfxypJ8GKA==
+itty-router@^4.0.23:
+  version "4.0.23"
+  resolved "https://registry.yarnpkg.com/itty-router/-/itty-router-4.0.23.tgz#44bb79134567773d3356e9972913e8fd6ed8a7a0"
+  integrity sha512-tP1NI8PVK43vWlBnIPqj47ni5FDSczFviA4wgBznscndo8lEvBA+pO3DD1rNbIQPcZhprr775iUTunyGvQMcBw==
 
 jose@^4.11.4, jose@^4.14.1:
   version "4.14.4"

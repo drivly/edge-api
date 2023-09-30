@@ -1,7 +1,7 @@
-import { createCors, error, Router, withParams, withContent } from 'itty-router'
+import { createCors, error, Router, withParams } from 'itty-router'
 import { Toucan } from 'toucan-js'
 import { json } from './json.js'
-import { withContext, withUrl } from './middleware/index.js'
+import { withContent, withContext, withUrl } from './middleware/index.js'
 import { isResponse } from './utils/isResponse.js'
 import { captureAnalytics } from './analytics/capture.js'
 
