@@ -1,4 +1,4 @@
-export const withContent = async request => {
-  if (request.body)
-    request.content = await request.json().catch()
+export const withContent = async req => {
+  if (req.body)
+    req.content = await req.json().catch()
 }
