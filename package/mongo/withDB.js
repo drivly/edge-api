@@ -26,6 +26,7 @@ export const DB = async ({ appId, dataSource, database, env }) => {
 export const withDB = (init = {}) => async (req, env, ctx) => {
   req.client = await Client({...init, env})
   req.db = await DB({...init, env})
+  req.db = await DB({...init, env})
   req.App = App
 }
 
