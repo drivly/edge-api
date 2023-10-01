@@ -31,4 +31,4 @@ export const sha256 = async (message) => {
   return hashHex
 }
 
-export const isEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
+export const isEmpty = (obj) => typeof(obj) === 'object' && Object.keys(obj).length === 0
