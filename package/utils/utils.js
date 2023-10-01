@@ -30,3 +30,5 @@ export const sha256 = async (message) => {
   const hashHex = hashArray.map(b => ("00" + b.toString(16)).slice(-2)).join("")
   return hashHex
 }
+
+export const isEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
