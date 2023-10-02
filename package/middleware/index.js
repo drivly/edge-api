@@ -1,5 +1,6 @@
 export * from './withContext.js'
 export * from './withContent.js'
+export * from './withQueryTypes.js'
 export * from './withUrl.js'
 export * from './assertUser.js'
 export * from './withWorkers.js'
