@@ -28,12 +28,12 @@ export const DB = (db) => {
       if (prop in target) return target[prop]
       const type = prop
       return {
-        list: async ({ order, offset, limit }) => {
+        list: async ({ order = 'id', offset = 0, limit = 100 } = {}) => {
           const statement = `select * from data where type = ? order by ? limit ? offset ?`
           const results = await db.prepare(statement).all(type, order, limit, offset)
           return results
         },
-        find: async (query, { order, offset, limit }) => {
+        find: async (query, { order = 'id', offset = 0, limit = 100 } = {}) => {
           // const statement = `select * from data where type = ? ${Object.entries(query).map(([key, value]) => `and data->'$.${key}' = ${value}`)} order by ${sort} limit ${limit} offset ${offset}`
           const statement = `select * from data where type = ? ${Object.keys(query).map(key => ` and data->'$.${key}' = ?`).join('')} order by ? limit ? offset ?`
           const results = await db.prepare(statement).bind(type, ...Object.values(query), order, limit, offset).all()
@@ -69,7 +69,7 @@ export const DB = (db) => {
           const results = await db.prepare(statement).run(type, id, JSON.stringify(data))
           return results
         },
-        insertMany: async (data, { id }) => {
+        insertMany: async (data, { id } = {}) => {
           const statement = `insert into data (type, id, data) values ${data.map(({ id }) => `(?, ?, ?)`).join(',')}`
           const results = await db.prepare(statement).run(...data.flatMap(data => [type, id ? data[id] : (data._id ?? data.id ?? base62(8)), JSON.stringify(data)]))
           return results
@@ -79,7 +79,7 @@ export const DB = (db) => {
           const results = await db.prepare(statement).run(type, id, JSON.stringify(data), JSON.stringify(data))
           return results
         },
-        upsertMany: async (data, { id }) => {
+        upsertMany: async (data, { id } = {}) => {
           const statement = `insert into data (type, id, data) values ${data.map(({ id }) => `(?, ?, ?)`).join(',')} on conflict (type, id) do update set data = excluded.data`
           const results = await db.prepare(statement).run(...data.flatMap(data => [type, id ? data[id] : (data._id ?? data.id ?? base62(8)), JSON.stringify(data)]))
           return results
