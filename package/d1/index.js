@@ -27,6 +27,7 @@ export const DB = (db) => {
     get: (target, prop) => {
       if (prop in target) return target[prop]
       const type = prop
+      console.log({ type })
       return {
         list: async ({ order = 'id', offset = 0, limit = 100 } = {}) => {
           const statement = `select * from data where type = ? order by ? limit ? offset ?`
