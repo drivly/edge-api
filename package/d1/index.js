@@ -28,10 +28,20 @@ export const DB = (db) => {
       if (prop in target) return target[prop]
       const type = prop
       return {
-        list: async (query, { order, offset, limit }) => {
+        list: async ({ order, offset, limit }) => {
+          const statement = `select * from data where type = ? order by ? limit ? offset ?`
+          const results = await db.prepare(statement).all(type, order, limit, offset)
+          return results
+        },
+        find: async (query, { order, offset, limit }) => {
           // const statement = `select * from data where type = ? ${Object.entries(query).map(([key, value]) => `and data->'$.${key}' = ${value}`)} order by ${sort} limit ${limit} offset ${offset}`
           const statement = `select * from data where type = ? ${Object.keys(query).map(key => ` and data->'$.${key}' = ?`).join('')} order by ? limit ? offset ?`
           const results = await db.prepare(statement).bind(type, ...Object.values(query), order, limit, offset).all()
+          return results
+        },
+        findOne: async (query) => {
+          const statement = `select * from data where type = ? ${Object.keys(query).map(key => ` and data->'$.${key}' = ?`).join('')} limit 1`
+          const results = await db.prepare(statement).bind(type, ...Object.values(query)).get()
           return results
         },
         get: async (id) => {
