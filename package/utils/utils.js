@@ -23,11 +23,16 @@ export const inverseHex = hex => {
 
 export const inverseNow = () => (4500000000000 - Date.now()).toString(36)
 
-export const sha256 = async (message) => {
+export const sha1 = message => hash('SHA-1', message)
+export const sha256 = message => hash('SHA-256', message)
+export const sha384 = message => hash('SHA-384', message)
+export const sha512 = message => hash('SHA-512', message)
+
+export const hash = async (algorithm, message) => {
   const msgBuffer = new TextEncoder().encode(message)
-  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer)
+  const hashBuffer = await crypto.subtle.digest(algorithm, msgBuffer)
   const hashArray = Array.from(new Uint8Array(hashBuffer))
-  const hashHex = hashArray.map(b => ("00" + b.toString(16)).slice(-2)).join("")
+  const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('')
   return hashHex
 }
 
