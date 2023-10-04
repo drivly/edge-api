@@ -415,10 +415,10 @@ agentkeepalive@^4.2.1:
   dependencies:
     humanize-ms "^1.2.1"
 
-ai-functions@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/ai-functions/-/ai-functions-0.0.3.tgz#7b29df5f82e6db54c2e6c334c0fcc96b944762be"
-  integrity sha512-s/SJepcT2D3AtQ3gLws2BLw9FE0ZMhuAvPGad0JXLIfzlCVN0q5GcKKDNjCV6pqEsLMVxulTWwGW1TOpDiMWqQ==
+ai-functions@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/ai-functions/-/ai-functions-0.0.4.tgz#465a54031e4028accda44d45ed388554040b0a93"
+  integrity sha512-lzM+tixBrFjHRdfIpJMkRMpjyyv/k4+Kdvt2W6aRpWvBXmpVax0i6Aug54ryGqIUNUVokBYZ/q3cKftblHu2/A==
   dependencies:
     camelcase-keys "^9.1.0"
     js-yaml "^4.1.0"
