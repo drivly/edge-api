@@ -1,6 +1,6 @@
 {
   "name": "edge-api",
-  "version": "0.1.64",
+  "version": "0.1.65",
   "description": "Simplified Edge API Router with JWT Auth, Logging, and Database",
   "main": "index.js",
   "type": "module",
@@ -26,6 +26,7 @@
     "@upstash/redis": "^1.22.0",
     "@whatwg-node/server": "^0.9.2",
     "accept-language-parser": "^1.5.0",
+    "ai-functions": "^0.0.3",
     "api.ht": "^0.0.2",
     "camelcase-keys": "^9.1.0",
     "hono": "^3.5.4",
